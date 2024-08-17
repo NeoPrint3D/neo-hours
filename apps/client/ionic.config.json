@@ -1,0 +1,7 @@
+{
+  "name": "@neo-hours/client",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}

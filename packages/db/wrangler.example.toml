@@ -1,0 +1,21 @@
+
+name = "[YOUR_ORGANIZATION]-cron"
+compatibility_date = "2024-07-18"
+main = "src/migrate.ts"
+node_compat = true
+
+
+[env.stage]
+
+d1_databases = [
+    { binding = "DB", database_name = "[YOUR_ORGANIZATION]", database_id = "[YOUR_PRODUCTION_DATABASE_ID]" },
+]
+[env.prod]
+
+d1_databases = [
+    { binding = "DB", database_name = "[YOUR_ORGANIZATION]", database_id = "[YOUR_PRODUCTION_DATABASE_ID]" },
+]
+
+
+[triggers]
+crons = ["0 0 * * *"]

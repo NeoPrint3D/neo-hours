@@ -1,0 +1,47 @@
+{
+  "name": "@neo-hours/db",
+  "version": "1.0.0",
+  "description": "",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:dev:setup": "pnpm db:generate && pnpm db:dev:migrate && pnpm db:dev:seed",
+    "db:dev:migrate": "NODE_ENV=dev node --import=tsx  src/scripts/migrate-local.ts",
+    "db:dev:push": "NODE_ENV=dev drizzle-kit push",
+    "db:dev:seed": "NODE_ENV=dev node --import=tsx  src/scripts/seed-local.ts",
+    "db:stage:setup": "pnpm db:generate && pnpm db:stage:migrate && pnpm db:stage:fts",
+    "db:stage:migrate": "NODE_ENV=stage drizzle-kit migrate --config=drizzle-remote.config.ts",
+    "db:stage:push": "NODE_ENV=stage drizzle-kit push --config=drizzle-remote.config.ts",
+    "db:stage:seed": "wrangler dev src/scripts/seed-remote.ts --remote --env=stage & PID=$! && (sleep 5 && curl http://localhost:8787 && kill $PID)",
+    "db:stage:fts": " wrangler d1 execute [YOUR_ORG_ID] --env=stage --remote  --file=./src/schema/fts.sql",
+    "db:prod:setup": "pnpm db:generate && pnpm db:prod:migrate && pnpm db:prod:fts",
+    "db:prod:migrate": "NODE_ENV=prod drizzle-kit migrate --config=drizzle-remote.config.ts",
+    "db:prod:push": "NODE_ENV=prod drizzle-kit push --config=drizzle-remote.config.ts",
+    "db:prod:seed": "wrangler dev src/scripts/seed-remote.ts --remote --env=prod & PID=$! && (sleep 5 && curl http://localhost:8787 && kill $PID)",
+    "db:prod:fts": " wrangler d1 execute [YOUR_ORG_ID] --env=prod --remote  --file=./src/schema/fts.sql",
+    "db:prune": "rm -r .data"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "better-sqlite3": "^11.1.2",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "0.32.0",
+    "oslo": "^1.2.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240725.0",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^20.14.13",
+    "drizzle-kit": "^0.23.1",
+    "tsx": "^4.16.3",
+    "typescript": "^5.5.4",
+    "wrangler": "^3.67.1"
+  }
+}

@@ -1,0 +1,149 @@
+:root {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+
+  --background: 207 100% 7%;
+  --foreground: 210 40% 98%;
+  --card: var(--background);
+  --card-foreground: var(--foreground);
+  --popover: var(--background);
+  --popover-foreground: 210 40% 98%;
+  --primary: 43 95% 65%;
+  --primary-foreground: 222 47.4% 11.2%;
+  --secondary: 209 80% 65%;
+  --secondary-foreground: var(var(--foreground));
+  --muted: 217 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: var(--foreground);
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 85% 30%;
+  --destructive-foreground: 0 62.8% 10.6%;
+  --border: 217 32.6% 25.5%;
+  --input: var(--border);
+  --ring: var(--secondary);
+
+  --success: 109 53% 72%;
+  --success-foreground: 109 53% 72%;
+  --info: 211 56% 64%;
+  --info-foreground: 211 56% 64;
+  --warning: 58 87% 76%;
+  --warning-foreground: 58 87% 76%;
+  --error: 0 85% 72%;
+  --error-foreground: 0 85% 72%;
+
+  --current-opacity: 0.8;
+  --radius: 1rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.border-gradient-content {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(
+        color-mix(in srgb, hsl(var(--background)) 90%, transparent 40%),
+        color-mix(in srgb, hsl(var(--background)) 80%, transparent 50%)
+      )
+      padding-box,
+    linear-gradient(to top right, #ffffff20, #ffffff50) border-box;
+}
+.border-gradient {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(
+        to bottom left,
+        color-mix(
+          in srgb,
+          hsl(var(--current-color) / var(--current-opacity)) 80%,
+          #fff 10%
+        ),
+        color-mix(
+          in srgb,
+          hsl(var(--current-color) / var(--current-opacity)) 60%,
+          hsl(var(--current-color)) 10%
+        )
+      )
+      padding-box,
+    linear-gradient(
+        to top right,
+        #ffffff40,
+        hsla(var(--current-color) / var(--current-opacity))
+      )
+      border-box;
+}
+
+.border-gradient-content-blur {
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(
+        color-mix(in srgb, hsl(var(--background)) 90%, transparent 40%),
+        color-mix(in srgb, hsl(var(--background)) 80%, transparent 10%)
+      )
+      padding-box,
+    linear-gradient(to top right, #ffffff20, #ffffff50) border-box;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 10px 0
+    color-mix(in srgb, hsl(var(--primary)) 20%, transparent 100%);
+}
+
+.toast-container {
+  border-radius: var(--radius) !important;
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(
+        color-mix(in srgb, hsl(var(--background)) 90%, transparent 40%),
+        color-mix(in srgb, hsl(var(--background)) 80%, transparent 10%)
+      )
+      padding-box,
+    linear-gradient(to top right, #ffffff20, #ffffff50) border-box !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 5px 10px 0
+    color-mix(in srgb, hsl(var(--primary)) 40%, transparent 50%) !important;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  margin: 4px 0;
+
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+  background-color: color-mix(
+    in srgb,
+    hsl(var(--background)) 90%,
+    #ffffff60 40%
+  );
+  transition: background-color 0.3s ease-in;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(
+    in srgb,
+    hsl(var(--background)) 90%,
+    hsl(var(--primary)) 20%
+  );
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: color-mix(
+    in srgb,
+    hsl(var(--background)) 90%,
+    hsl(var(--primary)) 80%
+  );
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@neo-hours/email",
+  "scripts": {
+    "dev": "npm run dev:worker",
+    "dev:worker": "wrangler dev src/index.ts",
+    "dev:email": "email dev",
+    "deploy": "wrangler deploy --minify src/index.ts"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.2.1",
+    "@react-email/components": "0.0.19",
+    "@react-email/render": "^0.0.16",
+    "hono": "^4.4.0",
+    "react": "^18.3.1",
+    "react-email": "2.1.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240403.0",
+    "wrangler": "^3.47.0"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}
